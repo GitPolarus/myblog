@@ -1,0 +1,23 @@
+Notre site est un blog de voyage;
+
+article (id, titre, description, date_publication, photo, auteur, publier)
+utilisateur(id, nom, prenom, date_naissance, pseudo, email, mot_de_passe, role, activer)
+commentaire(id, message, pseudo, email, date_commentaire, article)
+
+il y a 2 partie:
+ la partie administrateur : seul l'administrateur a acces au tableau de bord
+
+
+ la partie visiteur : qui concerne un utilisateur connecté
+Les fonctionnalités de base:
+    un utilisateur:
+      rédiger un article, 
+      commenter un article
+      créer un compte, 
+      se connecter, 
+      liker un article
+    Un administrateur
+      publier un article
+      Gérer les articles des utilisateur,
+      gerer les commentaires,
+      gerer les comptes
