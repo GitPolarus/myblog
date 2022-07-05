@@ -1,8 +1,7 @@
 <?php
-// namespace Ablam\Models;
-// use Ablam\Models\User;
+namespace Ablam\Models;
+use Ablam\Models\User;
 
-// use Ablam\Models\User;
 
 require_once "./User.php";
 /**

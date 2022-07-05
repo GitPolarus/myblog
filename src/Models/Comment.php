@@ -1,6 +1,6 @@
 <?php
 
-// namespace Ablam\Models;
+namespace Ablam\Models;
 
 /**
  * Comment
