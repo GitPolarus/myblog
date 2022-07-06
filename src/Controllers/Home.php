@@ -5,10 +5,10 @@ namespace Ablam\Controllers;
 use Ablam\Lib\Connection;
 use Ablam\Models\User;
 
-class HomeController
+class Home extends Controller
 {
 
-    public function showHome(){
+    public function index(){
         Connection::$test;
         $db = Connection::getConnection();
         $user = new User("ablam@gmail.com", "password", "Ablam", "Hippolyte");

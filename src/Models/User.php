@@ -2,19 +2,21 @@
 
 namespace Ablam\Models;
 
+use PDO;
+
 /**
  * User
  * Class to manage the users of the blog
  * @author FS-08 <coach.ezian@3wa.io>
  */
-class User
+class User extends Model
 {
     /**
      * $id : auto increment number from 0 to 100000
      *
      * @var integer
      */
-    private int $id;
+    // private int $id;
     /**
      * firstName : must start with uppercase character 
      * and have as min length : 3
@@ -68,12 +70,15 @@ class User
      */
     private Bool $activate;
 
-    public function __construct(string $email, string $password,string $firstName = "", string $lastName="" , string $pseudo = "", string $birthDate = "" )
+    public function __construct(string $email="", string $password="",string $firstName = "", string $lastName="" , string $pseudo = "", string $birthDate = "" )
     {
+        $this->table = "user";
+        $this->getConnection();
+        
         $this->firstName = ucfirst($firstName);
         $this->lastName = strtoupper($lastName);
         $this->email = $email;
-        // $this->password = $password; Hasher le mot de passe avant stockage
+         $this->password = password_hash($password,PASSWORD_DEFAULT);// Hasher le mot de passe avant stockage
         $this->pseudo = $pseudo;
         $this->birthDate = $birthDate;
         $this->role = "user";
@@ -92,6 +97,30 @@ class User
         return $age;
     }
 
+    public function create(){
+        $sql = "insert into $this->table (first_name, last_name,email, pseudo, password, birth_date, role, activate) values(
+            :first_name, :last_name,:email, :pseudo, :password, :birth_date, :role, :activate
+        )";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam( ":first_name",$this->firstName);
+        $stmt->bindParam( ":last_name",$this->lastName);
+        $stmt->bindParam( ":email",$this->email);
+        $stmt->bindParam( ":pseudo",$this->pseudo);
+        $stmt->bindParam( ":password",$this->password);
+        $stmt->bindParam( ":birth_date",$this->birthDate);
+        $stmt->bindParam( ":role",$this->role);
+        $stmt->bindParam( ":activate",$this->activate);
+        $stmt->execute();
+    }
+
+    public function getOneByEmail(){
+        $sql = "select * from user where email=:email";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam( ":email",$this->email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function __toString():string
     {
         return "{
@@ -108,6 +137,10 @@ class User
     }
 
     // Getters
+    public function getId(){
+        return $this->id;
+    }
+    
     public function getFirstName(){
         return $this->firstName;
     }
@@ -163,45 +196,6 @@ class User
     }
 
 
-    // Setters    
-    /**
-     * setLastName
-     *
-     * @param  mixed $lastName
-     * @return void
-     */
-    public function setLastName(string $lastName){
-        $this->lastName = strtoupper($lastName);
-    }
-    
-    /**
-     * setFirstName
-     *
-     * @param  mixed $firstName
-     * @return void
-     */
-    public function setFirstName(string $firstName){
-        $this->firstName = ucfirst($firstName);
-    }
-    
-    /**
-     * setRole
-     *
-     * @param  mixed $role
-     * @return void
-     */
-    public function setRole(string $role){
-        $this->role = $role;
-    }
-    
-    /**
-     * setActivate
-     *
-     * @param  mixed $activate
-     * @return void
-     */
-    public function setActivate(bool $activate){
-        $this->activate = $activate;
-    }
+   
     
 }

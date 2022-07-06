@@ -1,4 +1,6 @@
-<?php require_once "includes/head_section.php";?>
+<?php
+$title = "Blog | Home";
+require_once "includes/head_section.php";?>
 
 <?php require_once "includes/navbar.php";?>
 <div class=" container full-height">

@@ -7,7 +7,7 @@ namespace Ablam\Models;
  * Model use to manage the comment of each article of the blog
  * @author FS-08 <coach.ezian@3wa.io>
  */
-class Comment
+class Comment extends Model
 {
     private int $id;
     public string $message;

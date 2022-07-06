@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
 
-    <title>Home</title>
+    <title><?php echo $title = isset($title)? $title : "Blog"?></title>
 </head>
 
 <body>

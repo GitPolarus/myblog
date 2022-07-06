@@ -9,10 +9,9 @@ require_once "./User.php";
  * Model use to manage the article of our blog
  * @author FS-08 <coach.ezian@3wa.io>
  */
-class Article
+class Article extends Model
 {
 
-    private int $id;
     public string $title;
     public string $description;
     public string $publishDate;
