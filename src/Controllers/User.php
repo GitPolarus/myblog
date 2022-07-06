@@ -2,9 +2,12 @@
 
 namespace Ablam\Controllers;
 
-class UserController
+class User
 {
 
+    public function index(){
+        require_once "views/user/home.php";
+    }
     public function login(){
         echo $_POST["email"];
     }

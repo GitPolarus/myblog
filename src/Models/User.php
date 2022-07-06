@@ -2,12 +2,14 @@
 
 namespace Ablam\Models;
 
+use PDO;
+
 /**
  * User
  * Class to manage the users of the blog
  * @author FS-08 <coach.ezian@3wa.io>
  */
-class User
+class User extends Model
 {
     /**
      * $id : auto increment number from 0 to 100000
@@ -68,12 +70,15 @@ class User
      */
     private Bool $activate;
 
-    public function __construct(string $email, string $password,string $firstName = "", string $lastName="" , string $pseudo = "", string $birthDate = "" )
+    public function __construct(string $email= "", string $password="",string $firstName = "", string $lastName="" , string $pseudo = "", string $birthDate = "" )
     {
+        $this->getConnection();
+        $this->table = "user";
+
         $this->firstName = ucfirst($firstName);
         $this->lastName = strtoupper($lastName);
         $this->email = $email;
-        // $this->password = $password; Hasher le mot de passe avant stockage
+        $this->password = password_hash($password,PASSWORD_DEFAULT) ; //Hasher le mot de passe avant stockage
         $this->pseudo = $pseudo;
         $this->birthDate = $birthDate;
         $this->role = "user";
@@ -90,6 +95,20 @@ class User
         $now = date_create(date("d/m/YY", time()));
         $age = date_diff($now, $date)->format('%a');
         return $age;
+    }
+
+    
+    /**
+     * getOneByEmail
+     *
+     * @return void
+     */
+    public function getOneByEmail(){
+        $request = "select * from $this->table where email=:email";
+        $stmt = $this->connection->prepare($request);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function __toString():string

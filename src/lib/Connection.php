@@ -5,7 +5,6 @@ use PDO;
 use PDOException;
 
 class Connection{
-    public static $test;
 
     public static function getConnection(){
         try {

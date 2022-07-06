@@ -2,9 +2,9 @@
 
 namespace Ablam\Controllers;
 
-class AdminController
+class Admin
 {
-    public function showAdmin(){
+    public function index(){
         require "Views/admin/dashboard.php";
     }
 }
