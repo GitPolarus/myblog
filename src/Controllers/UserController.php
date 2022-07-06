@@ -6,7 +6,12 @@ class UserController
 {
 
     public function login(){
-        echo $_POST["email"];
+        if (isset($_POST["email"]) && isset($_POST["password"])) {
+            echo $_POST["email"];
+            echo $_POST["password"];
+            // require_once "views/homepage.php";
+        }
+        
     }
     
     public function showLogin(){

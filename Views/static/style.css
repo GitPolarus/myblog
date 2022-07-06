@@ -1,3 +1,10 @@
 body {
   margin: 0;
+  /* height: 100vh !important; */
+  /* background-color: red; */
+}
+
+.full-height {
+  height: 65vh !important;
+  /* background-color: red; */
 }
