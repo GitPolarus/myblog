@@ -8,7 +8,7 @@ class Auth
 {
 
     public function index(){
-        require "views/login.php";
+        require "Views/login.php";
     }
     
     public function login(){
@@ -35,6 +35,22 @@ class Auth
             }
        }
     }
+    
+    /**
+     * show the register page
+     *
+     * @return void
+     */
+    public function register(){
+        require "Views/register.php";
+    }
+
+    public function addUser(){
+        var_dump($_POST);
+       $user = new User($_POST['email'], $_POST['password'],$_POST['firstName'], $_POST['lastName'],$_POST['pseudo'], $_POST['birthDate']);
+       $user->create();
+    }
+    
 
     
 }

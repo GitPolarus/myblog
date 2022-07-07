@@ -111,6 +111,23 @@ class User extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    public function create(){
+        $request = "INSERT INTO $this->table (first_name, last_name, pseudo, email, password, birth_date, role, activate) values (:first_name, :last_name, :pseudo, :email, :password, :birth_date, :role, :activate)";
+        
+        $stmt = $this->connection->prepare($request);
+        $stmt->bindParam(":first_name", $this->firstName);
+        $stmt->bindParam(":last_name", $this->lastName);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":pseudo", $this->pseudo);
+        $stmt->bindParam(":password", $this->password);
+        $stmt->bindParam(":birth_date", $this->birthDate);
+        $stmt->bindParam(":role", $this->role);
+        $stmt->bindParam(":activate", $this->activate);
+        return $stmt->execute();
+    }
+
+
     public function __toString():string
     {
         return "{

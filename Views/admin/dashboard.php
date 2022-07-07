@@ -1,9 +1,9 @@
-<?php require_once "views/includes/head_section.php";?>
+<?php require_once "Views/includes/head_section.php";?>
 
-<?php require_once "views/includes/navbar.php";?>
+<?php require_once "Views/includes/navbar.php";?>
 <div class="d-flex">
     <div class="">
-        <?php require_once "views/includes/sidebar.php";?>
+        <?php require_once "Views/includes/sidebar.php";?>
     </div>
     <div>
         <div class="w-80">
@@ -33,4 +33,4 @@
 
 
 
-<?php require_once "views/includes/footer.php";?>
+<?php require_once "Views/includes/footer.php";?>

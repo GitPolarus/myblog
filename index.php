@@ -1,5 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
+echo phpinfo();
 // On sépare l'url sous form de sous chaine dans un tableau
 $params = explode("/",$_GET['p']);
 
@@ -10,6 +11,7 @@ if ($params[0]!="") {
     $class =  '\Ablam\Controllers\\'.$controller;
     $controller = new $class();
     
+    /*  Si le 2ème parametre du tableau (url) est défini, on l'appel au niveau du controller, sinon on applique la methode index du controlleur */
     $action = isset($params[1])? $params[1]: "index";
 
     //action via la methode 
