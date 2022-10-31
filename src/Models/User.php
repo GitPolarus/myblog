@@ -93,7 +93,7 @@ class User extends Model
     public function getAge():int{
         $date = date_create($this->birthDate);
         $now = date_create(date("d/m/YY", time()));
-        $age = date_diff($now, $date)->format('%a');
+        $age = date_diff($now, $date)->format('%y');
         return $age;
     }
 

@@ -1,6 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
-echo phpinfo();
+// echo phpinfo();
 // On sépare l'url sous form de sous chaine dans un tableau
 $params = explode("/",$_GET['p']);
 

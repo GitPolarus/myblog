@@ -1,6 +1,6 @@
 Notre site est un blog de voyage;
 
-article (id, titre, description, date_publication, photo, auteur, publier)
+article (id, titre, description, date_publication, photo, #id_auteur, publier)
 utilisateur(id, nom, prenom, date_naissance, pseudo, email, mot_de_passe, role, activer)
 commentaire(id, message, pseudo, email, date_commentaire, article)
 
